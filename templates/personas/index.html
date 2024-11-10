@@ -1,0 +1,32 @@
+{% include 'header.html' %}
+
+<h2>LISTADO DE PERSONAS</h2>
+
+<a href="{{ url_for('create') }}" class="btn btn-success">NUEVO</a>
+
+<table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">NOMBRE</th>
+        <th scope="col">TELEFONO</th>
+        <th scope="col">FECHA DE NACIMIENTO</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for item in personas %}
+      <tr>
+        <th scope="row">{{ item ['id'] }}</th>
+        <td>{{ item ['nombre']}}</td>
+        <td>{{ item ['telefono']}}</td>
+        <td>{{ item ['fecha_nac']}}</td>
+        <td><a href="/personas/edit/{{ item['id'] }}" class = "btn btn-warning">EDITAR</a></td>
+        <td><a href="/personas/delete/{{ item['id'] }}" onclick="return(confirm('Esta seguro ???'))" class = "btn btn-danger">ELIMINAR</a></td>
+      </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+
+{% include 'footer.html' %}
